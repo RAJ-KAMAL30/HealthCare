@@ -1,4 +1,4 @@
-<!-- patients.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
     <div class="row justify-content-center my-5">
     <div class="col-lg-6">
       
-    <form action="{{ url_for('add_patient') }}" method="POST">
+    <form action="/patients" method="POST">
         <label for="name" class="form-label">Name:</label>
         <input type="text" class="form-control" id="name" name="name" required>
         
