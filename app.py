@@ -1,9 +1,10 @@
 from flask import Flask , render_template , request , flash , redirect
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app=Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://7tmswmutzfmcdyj0ggsq:pscale_pw_anJnenu1qn0tzXCgxtJgQs9MdozFFKPq0oqASd2aGP:aws.connect.psdb.cloud/heathcare'
+app.config['SQLALCHEMY_DATABASE_URI']=os.environ['DB_CONNECTION_STRING']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
