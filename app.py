@@ -24,15 +24,10 @@ def submit_patient():
     contact_info = request.form['contact_info']
     
     add_patient_to_database(name, address, DOB, contact_info)
-  
 
   return render_template('patients.html')  
 
-    
-
-   
-
-  return render_template('patients.html')
+  
   
 if __name__ == "__main__":
   app.run(host='0.0.0.0',debug=True)

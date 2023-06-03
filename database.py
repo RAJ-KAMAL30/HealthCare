@@ -18,7 +18,7 @@ def add_patient_to_database(name, address, DOB, contact_info):
     query = text("INSERT INTO patient(name, address, DOB,contact_info)VALUES(:name, :address, :DOB, :contact_info)")
     conn.execute(query, {"name":name, "address":address, "DOB":DOB, "contact_info":contact_info})
     flash('patient details added succesfully')
-    return render_template('patients.html') 
+    return render_template('success.html') 
     
     
     
