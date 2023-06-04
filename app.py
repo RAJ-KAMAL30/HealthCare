@@ -42,6 +42,7 @@ def submit_medical_history():
 
 
     add_medicalHistory_to_database(diagnosis, p_id, treatment, surgeries, medications)
+    
 
   return render_template('medicalHistory.html')
 
@@ -68,7 +69,8 @@ def submit_lab_results():
     p_id = request.form['p_id']
 
     add_lab_results_to_database(blood_tests, urine_test,imaging_test, p_id)
-    flash('Lab Results added Successfully')
+    
+    
 
   return render_template('labResults.html')
     
