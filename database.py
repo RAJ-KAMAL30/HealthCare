@@ -37,11 +37,11 @@ def add_prescription_to_database(p_id, medication_name, dosage, frequency):
     return render_template('success.html')
     
     
-def add_lab_results_to_database(blood_tests, urine_test, imaging_test):
+def add_lab_results_to_database(blood_tests, urine_test, imaging_test, p_id):
   with engine.connect() as conn:
-    query = text("INSERT INTO lab_results(blood_tests, urine_test, imaging_test)VALUES(:blood_tests, :urine_test, :imaging_test)")
-    conn.execute(query, {"blood_tests":blood_tests, "urine_test":urine_test, "imaging_test":imaging_test})
-    flash('Prescription Details added Successfully')
+    query = text("INSERT INTO lab_results(blood_tests, urine_test, imaging_test, p_id)VALUES(:blood_tests, :urine_test, :imaging_test, :p_id)")
+    conn.execute(query, {"blood_tests":blood_tests, "urine_test":urine_test, "imaging_test":imaging_test, "p_id":p_id})
+    
     return render_template('success.html')  
     
 

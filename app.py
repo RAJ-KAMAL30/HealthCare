@@ -59,14 +59,16 @@ def submit_prescription_details():
   return render_template('Prescription.html')
 
     
-@app.route('labResults', methods=['GET','POST'])
+@app.route('/labResults', methods=['GET','POST'])
 def submit_lab_results():
   if request.method=='POST':
     blood_tests = request.form['blood_tests']
     urine_test = request.form['urine_test']
     imaging_test = request.form['imaging_test']
+    p_id = request.form['p_id']
 
-    add_lab_results_to_database(blood_tests, urine_test,imaging_test)
+    add_lab_results_to_database(blood_tests, urine_test,imaging_test, p_id)
+    flash('Lab Results added Successfully')
 
   return render_template('labResults.html')
     
