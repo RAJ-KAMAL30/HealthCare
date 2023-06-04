@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from database import add_patient_to_database
 from database import add_medicalHistory_to_database
 from database import add_prescription_to_database
+from database import add_lab_results_to_database
 
 import os
 
@@ -58,7 +59,17 @@ def submit_prescription_details():
   return render_template('Prescription.html')
 
     
+@app.route('labResults', methods=['GET','POST'])
+def submit_lab_results():
+  if request.method=='POST':
+    blood_tests = request.form['blood_tests']
+    urine_test = request.form['urine_test']
+    imaging_test = request.form['imaging_test']
 
+    add_lab_results_to_database(blood_tests, urine_test,imaging_test)
+
+  return render_template('labResults.html')
+    
 
   
   

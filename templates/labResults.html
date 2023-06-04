@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lab Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-        
+                9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+</head>
+<body>
+    <section id="contact">
+    <div class="container-lg">
+      <div class="text-center mt-3">
+        <h2>Add new Records</h2>  
+        <p class="lead">Enter Lab Result Details</p>
+      </div>
+      <div class="row justify-content-center my-5">
+      <div class="col-lg-6">
+      
+      <form action="/labResults" method="POST">
+          <label for="blood_tests" class="form-label">Blood Tests:</label>
+          <input type="text" class="form-control" id="blood_tests" name="blood_tests" required>
+        
+          <label for="urine_test" class="form-label">Urine Tests:</label>
+          <input type="text" class="form-control" id="urine_test" name="urine_test" required>
+        
+          <label for="imaging_test" class="form-label">Imaging Tests:</label>
+          <input type="text" class="form-control" id="imaging_test" name="imaging_test" required>
+
+         
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary mt-3" value="Submit">
+          </div>
+  
+        </form>
+    </div>
+    </div>
+    </div> 
+</body>
+</html>
