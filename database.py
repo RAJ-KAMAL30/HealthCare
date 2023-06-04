@@ -62,6 +62,29 @@ def display_patients():
   
   return render_template('display_patients.html', patients = patients)    
 
+
+
+def display_medical_history():
+  with engine.connect() as connection:
+    query = text("SELECT * from medicalHistory")
+    result = connection.execute(query)
+    medicalHistory = []
+    for row in result : 
+      medical_detail = {
+        "record_id":row[0],
+        "diagnosis":row[1],
+        "p_id": row[2],
+        "treatment":row[3],
+        "surgeries":row[4], 
+        "medications": row[5]
+      }
+      medicalHistory.append(medical_detail)
+
+  return render_template('display_medical_details.html', medicalHistory=medicalHistory)
+    
+      
+      
+
     
     
 

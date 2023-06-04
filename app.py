@@ -5,6 +5,7 @@ from database import add_medicalHistory_to_database
 from database import add_prescription_to_database
 from database import add_lab_results_to_database
 from database import display_patients
+from database import display_medical_history
 
 import os
 
@@ -20,8 +21,12 @@ def hello_home():
   return render_template('Home.html')
 
 @app.route("/displayPatients")
-def display():
+def display_p():
   return display_patients()
+
+@app.route("/displayMedicalHistory")
+def display_m():
+  return display_medical_history()
 
 @app.route('/patients', methods=['GET','POST'])
 def submit_patient():
