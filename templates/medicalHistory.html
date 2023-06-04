@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Medical History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-        
+                9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+</head>
+<body>
+    <section id="contact">
+    <div class="container-lg">
+      <div class="text-center mt-3">
+        <h2>Add new Records</h2>  
+        <p class="lead">Enter Medical History Details</p>
+      </div>
+      <div class="row justify-content-center my-5">
+      <div class="col-lg-6">
+      
+      <form action="/MedicalHistory" method="POST">
+          <label for="p_id" class="form-label">Patient ID:</label>
+          <input type="text" class="form-control" id="p_id" name="p_id" required>
+        
+          <label for="diagnosis" class="form-label">Diagnosis:</label>
+          <input type="text" class="form-control" id="diagnosis" name="diagnosis" required>
+        
+          <label for="treatment" class="form-label">Treatment:</label>
+          <input type="text" class="form-control" id="treatment" name="treatment" required>
+  
+          <label for="surgeries" class="form-label">Surgeries:</label>
+          <input type="text" class="form-control" id="surgeries"           
+          name="surgeries" required>
+
+          <label for="medications" class="form-label">Medications:</label>
+          <input type="text" class="form-control" id="medications"           
+          name="medications" required>
+         
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary mt-3" value="Submit">
+          </div>
+  
+        </form>
+    </div>
+    </div>
+    </div> 
+</body>
+</html>

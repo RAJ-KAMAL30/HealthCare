@@ -1,6 +1,7 @@
 from flask import Flask , render_template , request , flash , redirect
 from flask_sqlalchemy import SQLAlchemy
 from database import add_patient_to_database
+from database import add_medicalHistory_to_database
 
 import os
 
@@ -26,6 +27,25 @@ def submit_patient():
     add_patient_to_database(name, address, DOB, contact_info)
 
   return render_template('patients.html')  
+
+
+@app.route('/MedicalHistory', methods= ['GET','POST'])
+def submit_medical_history():
+  if request.method =='POST':
+    diagnosis = request.form['diagnosis'];
+    p_id = request.form['p_id']
+    treatment = request.form['treatment']
+    surgeries = request.form['surgeries']
+    medications = request.form['medications']
+
+
+    add_medicalHistory_to_database(diagnosis, p_id, treatment, surgeries, medications)
+
+  return render_template('medicalHistory.html')
+
+
+    
+
 
   
   
