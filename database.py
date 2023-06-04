@@ -81,6 +81,43 @@ def display_medical_history():
       medicalHistory.append(medical_detail)
 
   return render_template('display_medical_details.html', medicalHistory=medicalHistory)
+
+
+def display_prescription():
+  with engine.connect() as connection:
+    query = text("SELECT * from prescription")
+    result = connection.execute(query)
+    prescription = []
+    for row in result :
+      prescription_detail = {
+        "p_id":row[0],
+        "medication_name":row[1],
+        "dosage":row[2],
+        "frequency":row[3]
+      }
+      prescription.append(prescription_detail)
+
+    return render_template("display_prescription_detail.html", prescription = prescription )
+
+
+def display_lab_results():
+  with engine.connect() as connection:
+    query = text("SELECT * from lab_results")
+    result = connection.execute(query) 
+    lab_results = []
+    for row in result:
+      lab_result_detail ={
+        "blood_tests":row[0],
+        "urine_test":row[1],
+        "imaging_test":row[2],
+        "p_id":row[3]
+      }
+      lab_results.append(lab_result_detail)
+
+    return render_template('display_lab_result_details.html', lab_results = lab_results)
+
+
+      
     
       
       

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Display Patients</title>
+    <title>Display Prescription </title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
@@ -11,26 +11,22 @@
     <table class="table table-striped"">
   <thead>
     <tr>
-      <th>Record ID</th>
-      <th>Diagnosis</th>
       <th>Patient ID</th>
-      <th>Treatment </th>
-      <th>Surgeries</th>
-      <th>Medication </th>
-      <th>Actions </th>
+      <th>Medication Name</th>
+      <th>Dosage </th>
+      <th>Frequency </th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    {% for medical_detail in medicalHistory %}
+    {% for prescription_detail in prescription %}
     <tr>
-      <td>{{ medical_detail.record_id }}</td>
-      <td>{{ medical_detail.diagnosis }}</td>
-      <td>{{ medical_detail.p_id }}</td>
-      <td>{{ medical_detail.treatment }}</td>
-      <td>{{ medical_detail.surgeries }}</td>
-      <td>{{ medical_detail.medications }}</td>
+      <td>{{ prescription_detail.p_id }}</td>
+      <td>{{ prescription_detail.medication_name }}</td>
+      <td>{{ prescription_detail.dosage }}</td>
+      <td>{{ prescription_detail.frequency }}</td>
       <td>
-        <a href="/medicalHistory/{{ medical_detail.record_id }}/update">Update</a>
+        <a href="/prescription/{{ prescription_detail.p_id }}/update">Update</a>
       </td>
     </tr>
     {% endfor %}

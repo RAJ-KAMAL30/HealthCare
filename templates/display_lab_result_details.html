@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Display Patients</title>
+    <title>Display Lab Results </title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   </head>
   <body>
@@ -11,26 +11,22 @@
     <table class="table table-striped"">
   <thead>
     <tr>
-      <th>Record ID</th>
-      <th>Diagnosis</th>
-      <th>Patient ID</th>
-      <th>Treatment </th>
-      <th>Surgeries</th>
-      <th>Medication </th>
-      <th>Actions </th>
+      <th>Blood Test</th>
+      <th>Urine Test </th>
+      <th>Imaging Test </th>
+      <th>Patient ID </th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    {% for medical_detail in medicalHistory %}
+    {% for lab_result_detail in lab_results %}
     <tr>
-      <td>{{ medical_detail.record_id }}</td>
-      <td>{{ medical_detail.diagnosis }}</td>
-      <td>{{ medical_detail.p_id }}</td>
-      <td>{{ medical_detail.treatment }}</td>
-      <td>{{ medical_detail.surgeries }}</td>
-      <td>{{ medical_detail.medications }}</td>
+      <td>{{ lab_result_detail.blood_tests }}</td>
+      <td>{{ lab_result_detail.urine_test }}</td>
+      <td>{{ lab_result_detail.imagin_test }}</td>
+      <td>{{ lab_result_detail.p_id }}</td>
       <td>
-        <a href="/medicalHistory/{{ medical_detail.record_id }}/update">Update</a>
+        <a href="/lab_results/{{ lab_result_detail.p_id }}/update">Update</a>
       </td>
     </tr>
     {% endfor %}

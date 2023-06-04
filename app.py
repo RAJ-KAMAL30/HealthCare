@@ -6,6 +6,8 @@ from database import add_prescription_to_database
 from database import add_lab_results_to_database
 from database import display_patients
 from database import display_medical_history
+from database import display_prescription
+from database import display_lab_results
 
 import os
 
@@ -27,6 +29,16 @@ def display_p():
 @app.route("/displayMedicalHistory")
 def display_m():
   return display_medical_history()
+
+@app.route('/displayPrescription')
+def display_pr():
+  return display_prescription()
+
+@app.route('/displayLabResults')
+def display_l():
+  return display_lab_results()
+  
+  
 
 @app.route('/patients', methods=['GET','POST'])
 def submit_patient():
