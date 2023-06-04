@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine, text 
 from flask import flash, redirect, render_template
-
 import os
 
 db_connection_string = os.environ["DB_CONNECTION_STRING"]
@@ -43,6 +42,26 @@ def add_lab_results_to_database(blood_tests, urine_test, imaging_test, p_id):
     conn.execute(query, {"blood_tests":blood_tests, "urine_test":urine_test, "imaging_test":imaging_test, "p_id":p_id})
     
     return render_template('success.html')  
+
+
+
+def display_patients():
+  connection = engine.connect()
+
+  result = connection.execute("SELECT * from patient")
+  patients = []
+  for row in result:
+    patient = {
+      "p_id":row[0],
+      "name":row[1],
+      "address":row[2],
+      "DOB":row[3],
+      "contact_info":row[4] 
+    }
+    patients = append(patient)
+  return render_template('display_patients.html', patients = patients)    
+
+    
     
 
     

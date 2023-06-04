@@ -4,6 +4,7 @@ from database import add_patient_to_database
 from database import add_medicalHistory_to_database
 from database import add_prescription_to_database
 from database import add_lab_results_to_database
+from database import display_patients
 
 import os
 
@@ -17,6 +18,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 @app.route("/")
 def hello_home():
   return render_template('Home.html')
+
+@app.route("/displayPatients")
+def display():
+  return display_patients()
 
 @app.route('/patients', methods=['GET','POST'])
 def submit_patient():
