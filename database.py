@@ -1,4 +1,5 @@
-from sqlalchemy import create_engine, text 
+from sqlalchemy import create_engine, text
+from flask_sqlalchemy import SQLAlchemy
 from flask import flash, redirect, render_template , request , url_for
 import os
 

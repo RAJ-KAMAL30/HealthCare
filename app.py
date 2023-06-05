@@ -1,5 +1,5 @@
 from flask import Flask , render_template , request , flash , redirect, session
-from flask_sqlalchemy import SQLAlchemy
+
 from database import add_patient_to_database
 from database import add_medicalHistory_to_database
 from database import add_prescription_to_database
