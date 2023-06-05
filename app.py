@@ -1,4 +1,4 @@
-from flask import Flask , render_template , request , flash , redirect
+from flask import Flask , render_template , request , flash , redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from database import add_patient_to_database
 from database import add_medicalHistory_to_database
@@ -23,9 +23,36 @@ app.secret_key = 'dont tell anyone'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DB_CONNECTION_STRING']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+USER = {
+  'healthcare.zone@gmail.com':'HealthCareZone123!'
+}
 @app.route("/")
 def hello_home():
-  return render_template('Home.html')
+  if 'email' in session :
+    return render_template('Home.html', email=session['email'])
+  else:
+    return redirect('/login')
+
+@app.route('/login', methods = ['GET','POST'])
+def login():
+  if request.method == 'POST':
+    email = request.form['email']
+    password = request.form['password']
+
+    if email in USER and password == USER[email]:
+      session['email']=email
+      return redirect('/')
+    else:
+      error = "Invalid credentials. PLease try again."
+      return render_template('login.html', error=error)
+
+  return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+  session.clear()
+  return redirect('/login')
+  
 
 @app.route("/displayPatients")
 def display_p():
