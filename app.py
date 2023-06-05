@@ -11,6 +11,8 @@ from database import display_lab_results
 from database import add_Outcomes_to_database
 from database import update_patient
 from database import update_medicalHistory
+from database import update_prescription
+from database import update_lab_results
 
 import os
 
@@ -41,6 +43,7 @@ def display_pr():
 def display_l():
   return display_lab_results()
 
+
 @app.route('/patient/<int:p_id>/update', methods=['GET', 'POST'])
 def update_p(p_id):
   return update_patient(p_id)
@@ -48,8 +51,14 @@ def update_p(p_id):
 @app.route("/medicalHistory/<int:record_id>/update", methods=['GET', 'POST'])
 def update_m(record_id):
   return update_medicalHistory(record_id)
-  
-  
+
+@app.route("/Prescription/<int:p_id>/update", methods=['GET', 'POST'])
+def update_pres(p_id):
+  return update_prescription(p_id)
+
+@app.route("/LabResults/<int:p_id>/update", methods=['GET', 'POST'])
+def update_lab(p_id):
+  return update_lab_results(p_id)
 
 @app.route('/patients', methods=['GET','POST'])
 def submit_patient():

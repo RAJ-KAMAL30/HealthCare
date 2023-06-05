@@ -174,9 +174,68 @@ def update_medicalHistory(record_id):
   return render_template('update_medicalHistory.html', medicalHistory = medicalHistory )
     
 
+def update_prescription(p_id):
+  with engine.connect() as conn :
+    query = text("SELECT * FROM prescription WHERE p_id = :p_id")
+    result = conn.execute(query , {'p_id': p_id})
+    prescription = result.fetchone()
 
+  if prescription is None :
+    return "Patient not found"
+
+  if request.method == 'POST':
+    medication_name = request.form['medication_name']
+    dosage = request.form['dosage']
+    frequency = request.form['frequency']
+    
+    
+    with engine.connect() as connection :
+      query = text("UPDATE prescription SET medication_name = :medication_name, dosage = :dosage, frequency = :frequency  WHERE p_id = :p_id")
+      connection.execute(query ,{"medication_name":medication_name, "dosage":dosage, "frequency":frequency, "p_id":p_id })
+
+    return redirect("/displayPrescription")
+    
+  return render_template('update_prescription.html', prescription = prescription )
+
+
+def update_lab_results(p_id):
+  with engine.connect() as conn:
+    query = text("SELECT * FROM lab_results WHERE p_id = :p_id")
+    result = conn.execute(query , {'p_id': p_id})
+    lab_results = result.fetchone()
+    
+      
+
+    if lab_results is None :
+      return "Patient not found"
       
     
+
+  if request.method == 'POST':
+    blood_tests = request.form['blood_tests']
+    urine_test = request.form["urine_test"]
+    imaging_test = request.form["imaging_test"]
+    
+    
+    with engine.connect() as connection :
+      query = text("UPDATE lab_results SET blood_tests = :blood_tests, urine_test = :urine_test, imaging_test = :imaging_test  WHERE p_id = :p_id")
+      connection.execute(query ,{"blood_tests":blood_tests, "urinr_test":urine_test, "imaging_test":imaging_test, "p_id":p_id })
+
+    return redirect("/displayLabResults")
+    
+  return render_template('update_lab_results.html', lab_results = lab_results )
+    
+    
+    
+  
+
+   
+    
+   
+   
+  
+
+   
       
       
 
