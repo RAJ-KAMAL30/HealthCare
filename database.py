@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, text 
-from flask import flash, redirect, render_template
+from flask import flash, redirect, render_template , request , url_for
 import os
 
 db_connection_string = os.environ["DB_CONNECTION_STRING"]
@@ -124,6 +124,32 @@ def display_lab_results():
 
     return render_template('display_lab_result_details.html', lab_results = lab_results)
 
+
+def update_patient(p_id):
+  with engine.connect() as conn :
+    query = text("SELECT * FROM patient WHERE p_id = :p_id")
+    result = conn.execute(query , {'p_id': p_id})
+    patient = result.fetchone()
+
+  if patient is None :
+    return "Patient not found"
+
+  if request.method == 'POST':
+    name = request.form['name']
+    address= request.form['address']
+    DOB = request.form['DOB']
+    contact_info = request.form['contact_info']
+
+    with engine.connect() as connection :
+      query = text("UPDATE patient SET name = :name, address = :address, DOB = :DOB, contact_info = :contact_info WHERE p_id = :p_id")
+      connection.execute(query ,{"name":name, "address":address, "DOB":DOB, "contact_info":contact_info, "p_id":p_id})
+
+    return redirect('/displayPatients')
+    
+
+
+  return render_template('update_patient.html', patient = patient)
+    
 
 
       
