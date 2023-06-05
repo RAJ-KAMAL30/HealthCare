@@ -8,6 +8,7 @@ from database import display_patients
 from database import display_medical_history
 from database import display_prescription
 from database import display_lab_results
+from database import add_Outcomes_to_database
 
 import os
 
@@ -92,9 +93,20 @@ def submit_lab_results():
 
     add_lab_results_to_database(blood_tests, urine_test,imaging_test, p_id)
     
+  return render_template('labResults.html')
+
+
+@app.route('/Outcomes', methods=['GET','POST'])
+def submit_Outcomes():
+  if request.method=='POST':
+    p_id = request.form['p_id']
+    readmission_rates = request.form['readmission_rates']
+    medical_adherance = request.form['medical_adherance']
     
 
-  return render_template('labResults.html')
+    add_Outcomes_to_database(p_id, readmission_rates, medical_adherance)
+
+  return render_template('Outcomes.html')
     
 
   

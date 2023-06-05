@@ -41,7 +41,15 @@ def add_lab_results_to_database(blood_tests, urine_test, imaging_test, p_id):
     query = text("INSERT INTO lab_results(blood_tests, urine_test, imaging_test, p_id)VALUES(:blood_tests, :urine_test, :imaging_test, :p_id)")
     conn.execute(query, {"blood_tests":blood_tests, "urine_test":urine_test, "imaging_test":imaging_test, "p_id":p_id})
     
-    return render_template('success.html')  
+    return render_template('success.html') 
+
+
+def add_Outcomes_to_database(p_id,readmission_rates, medical_adherance):
+  with engine.connect() as conn :
+    query=text("INSERT INTO Outcomes(p_id, readmission_rates, medical_adherance)VALUES(:p_id, :readmission_rates, :medical_adherance)")
+    conn.execute(query,{"p_id":p_id, "readmission_rates":readmission_rates, "medical_adherance":medical_adherance})
+
+    return render_template('success.html')
 
 
 
@@ -115,6 +123,7 @@ def display_lab_results():
       lab_results.append(lab_result_detail)
 
     return render_template('display_lab_result_details.html', lab_results = lab_results)
+
 
 
       
