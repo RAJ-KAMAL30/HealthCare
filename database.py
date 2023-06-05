@@ -146,9 +146,32 @@ def update_patient(p_id):
 
     return redirect('/displayPatients')
     
-
-
   return render_template('update_patient.html', patient = patient)
+
+
+def update_medicalHistory(record_id):
+  with engine.connect() as conn :
+    query = text("SELECT * FROM medicalHistory WHERE record_id = :record_id")
+    result = conn.execute(query , {'record_id': record_id})
+    medicalHistory = result.fetchone()
+
+  if medicalHistory is None :
+    return "Patient not found"
+
+  if request.method == 'POST':
+    diagnosis = request.form['diagnosis']
+    p_id = request.form['p_id']
+    treatment = request.form['treatment']
+    surgeries = request.form['surgeries']
+    medications = request.form['medications']
+    
+    with engine.connect() as connection :
+      query = text("UPDATE medicalHistory SET diagnosis = :diagnosis, p_id = :p_id, treatment = :treatment, surgeries = :surgeries , medications = :medications WHERE record_id = :record_id")
+      connection.execute(query ,{"diagnosis":diagnosis, "p_id":p_id, "treatment":treatment, "surgeries":surgeries, "medications":medications, "record_id":record_id })
+
+    return redirect('/displayMedicalHistory')
+    
+  return render_template('update_medicalHistory.html', medicalHistory = medicalHistory )
     
 
 

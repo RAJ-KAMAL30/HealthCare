@@ -10,6 +10,7 @@ from database import display_prescription
 from database import display_lab_results
 from database import add_Outcomes_to_database
 from database import update_patient
+from database import update_medicalHistory
 
 import os
 
@@ -43,6 +44,10 @@ def display_l():
 @app.route('/patient/<int:p_id>/update', methods=['GET', 'POST'])
 def update_p(p_id):
   return update_patient(p_id)
+
+@app.route("/medicalHistory/<int:record_id>/update", methods=['GET', 'POST'])
+def update_m(record_id):
+  return update_medicalHistory(record_id)
   
   
 
